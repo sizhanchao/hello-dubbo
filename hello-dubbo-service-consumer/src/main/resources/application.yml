@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: hello-dubbo-service-consumer
+
+server:
+  port: 9090
+
+user:
+  service:
+    version: 1.0.0
+dubbo:
+  scan:
+    # 2.6.2 之前使用 base-packages 是正确的，目前用2.7.1
+    basePackages: com.zhan.hellodubboserviceconsumer.controller
+  application:
+    id: hello-dubbo-service-consumer
+    name: hello-dubbo-service-consumer
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 12345
+    serialization: kryo
+  #    status: server
+  registry:
+    id: zookeeper
+    # backup(备份):后跟备份服务器地址
+    address: zookeeper://192.168.31.228:2181?backup=192.168.31.228:2182,192.168.31.228:2183
+#    check: false
+#状态检查
+#management:
+#  endpoint:
+
+

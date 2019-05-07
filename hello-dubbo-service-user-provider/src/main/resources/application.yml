@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: hello-dubbo-service-user-provider
+
+user:
+  service:
+    version: 1.0.0
+
+dubbo:
+  scan:
+    # 2.6.2 之前使用 base-packages 是正确的，目前用2.7.1
+    basePackages: com.zhan.hellodubboserviceuserprovider
+  application:
+    id: hello-dubbo-service-user-provider
+    name: hello-dubbo-service-user-provider
+    qos-port: 22222
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 20880
+    status: server
+    #高速序列化方式
+    serialization: kryo
+  #    optimizer:
+  registry:
+    id: zookeeper
+    # backup(备份):后跟备份服务器地址
+    address: zookeeper://192.168.31.228:2181?backup=192.168.31.228:2182,192.168.31.228:2183
+  provider:
+    #    在集群负载均衡时，Dubbo 提供了多种均衡策略【负载均衡策略：随机、轮询、最少活跃调用数、一致性 Hash】，缺省为 random 随机调用。
+    loadbalance: roundrobin
+#    check: false
+#状态检查
+#management:
+#  endpoint:
